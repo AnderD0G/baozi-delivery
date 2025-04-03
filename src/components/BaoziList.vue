@@ -1,7 +1,3 @@
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
-  <meta name="viewport" content="user-scalable=no"> <!-- 禁用双击缩放 -->
-</head>
 <template>
   <div class="container">
     <h1 class="title">选择您的包子</h1>
@@ -200,5 +196,8 @@ export default {
 .cart-item button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+html, body {
+  touch-action: manipulation; /* 禁用全局双击缩放 */
 }
 </style>
