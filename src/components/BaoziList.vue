@@ -54,7 +54,7 @@ export default {
   methods: {
     async fetchBaoziList() {
       try {
-        const response = await axios.get("http://localhost:8080/products");
+        const response = await axios.get("http://192.168.31.168:8080/products");
         this.baoziList = response.data
           .filter((baozi) => baozi.isvalid) // 仅保留 isvalid 为 true 的商品
           .map((baozi) => ({
