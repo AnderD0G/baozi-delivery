@@ -134,6 +134,7 @@ export default {
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  touch-action: manipulation; /* 禁用双击缩放 */
 }
 .actions button:disabled {
   background-color: #ccc;
@@ -194,17 +195,10 @@ export default {
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  touch-action: manipulation; /* 禁用双击缩放 */
 }
 .cart-item button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
-}
-.actions button {
-  padding: 8px 15px;
-  font-size: 18px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  touch-action: manipulation; /* 禁用双击缩放 */
 }
 </style>
