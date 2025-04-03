@@ -16,8 +16,14 @@
     </div>
     <div class="cart-summary">
       <h2>购物车</h2>
-      <p>总数：{{ totalQuantity }}</p>
-      <p>总价：￥{{ totalPrice }}</p>
+      <div v-for="baozi in filteredCartItems" :key="baozi.id" class="cart-item">
+        <p>
+          {{ baozi.name }} x {{ baozi.quantity }} = ￥{{ (baozi.quantity * baozi.price).toFixed(2) }}
+          <button @click="decreaseQuantity(baozi)" :disabled="baozi.quantity === 0">-</button>
+          <button @click="increaseQuantity(baozi)">+</button>
+        </p>
+      </div>
+      <p class="total">总金额：￥{{ totalPrice }}</p>
       <button @click="checkout" :disabled="totalQuantity === 0" class="checkout-button">去结算</button>
     </div>
   </div>
@@ -37,9 +43,12 @@ export default {
       return this.baoziList.reduce((sum, baozi) => sum + (baozi.quantity || 0), 0);
     },
     totalPrice() {
-      return this.baoziList
-        .reduce((sum, baozi) => sum + (baozi.quantity || 0) * baozi.price, 0)
-        .toFixed(2);
+      return this.filteredCartItems
+        .reduce((sum, baozi) => sum + baozi.quantity * baozi.price, 0)
+        .toFixed(2); // Use filteredCartItems to calculate total price
+    },
+    filteredCartItems() {
+      return this.baoziList.filter((baozi) => baozi.quantity > 0);
     },
   },
   methods: {
@@ -50,6 +59,7 @@ export default {
           .filter((baozi) => baozi.isvalid) // 仅保留 isvalid 为 true 的商品
           .map((baozi) => ({
             ...baozi,
+            price: parseFloat(baozi.price), // 确保价格是数字类型
             quantity: 0, // 初始化数量为 0
           }));
       } catch (error) {
@@ -157,6 +167,32 @@ export default {
 }
 .checkout-button:disabled {
   background: #ccc;
+  cursor: not-allowed;
+}
+.cart-item {
+  text-align: left;
+  margin-bottom: 10px;
+}
+.total {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 10px;
+}
+.cart-item p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.cart-item button {
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.cart-item button:disabled {
+  background-color: #ccc;
   cursor: not-allowed;
 }
 </style>
