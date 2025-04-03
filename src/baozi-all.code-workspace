@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../baozi-background"
+		},
+		{
+			"path": "../../../baozi-guanli"
+		},
+		{
+			"path": "../../../baozi-admin-backend"
+		}
+	],
+	"settings": {}
+}
