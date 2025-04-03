@@ -128,10 +128,19 @@ export default {
 .cart-summary {
   margin-top: 30px;
   padding: 20px;
-  border-top: 2px solid #ddd;
-  background: #f9f9f9;
+  border: 1px solid #ddd;
   border-radius: 10px;
-  display: inline-block;
+  width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  transition: transform 0.2s;
+  text-align: left;
+  align-self: center; /* Center align with baozi-list */
+  margin-left: auto; /* Center horizontally */
+  margin-right: auto; /* Center horizontally */
+}
+.cart-summary:hover {
+  transform: scale(1.05);
 }
 .checkout-button {
   background: #ff5722;
