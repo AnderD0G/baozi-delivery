@@ -26,11 +26,13 @@
       <p class="total">总金额：￥{{ totalPrice }}</p>
       <button @click="checkout" :disabled="totalQuantity === 0" class="checkout-button">去结算</button>
     </div>
+    <button @click="goToVerifyEmail" class="verify-email-button">注册</button>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import { useRouter } from "vue-router";
 
 export default {
   data() {
@@ -81,6 +83,13 @@ export default {
   },
   mounted() {
     this.fetchBaoziList();
+  },
+  setup() {
+    const router = useRouter();
+    const goToVerifyEmail = () => {
+      router.push("/verify-email");
+    };
+    return { goToVerifyEmail };
   },
 };
 </script>
@@ -199,5 +208,19 @@ export default {
 }
 html, body {
   touch-action: manipulation; /* 禁用全局双击缩放 */
+}
+.verify-email-button {
+  background: #4caf50;
+  color: white;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.3s;
+}
+.verify-email-button:hover {
+  background: #45a049;
 }
 </style>
